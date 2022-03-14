@@ -442,8 +442,13 @@ int consume_event(struct parser_state *s, yaml_event_t *event)
     return SUCCESS;
 }
 
-int
-main(int argc, char *argv[])
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main(cnt, arr)      yaml_examples_parse_main(cnt, arr)
+#endif
+
+int main(int argc, const char** argv)
 {
     int code;
     enum status status;

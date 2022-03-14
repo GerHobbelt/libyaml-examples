@@ -69,7 +69,13 @@
 
 #include "fruit.h"
 
-int main(int argc, char *argv[])
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main(cnt, arr)      yaml_examples_emit_main(cnt, arr)
+#endif
+
+int main(int argc, const char** argv)
 {
     yaml_emitter_t emitter;
     yaml_event_t event;
