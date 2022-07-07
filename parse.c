@@ -92,8 +92,11 @@
 
 #include "fruit.h"
 
+#include "monolithic_examples.h"
+
+
 /* Set environment variable DEBUG=1 to enable debug output. */
-int debug = 0;
+static int debug = 0;
 
 /* yaml_* functions return 1 on success and 0 on failure. */
 enum status {
@@ -137,7 +140,7 @@ struct parser_state {
 /*
  * Convert a yaml boolean string to a boolean value (true|false).
  */
-int
+static int
 get_boolean(const char *string, bool *value)
 {
     char *t[] = {"y", "Y", "yes", "Yes", "YES", "true", "True", "TRUE", "on", "On", "ON", NULL};
@@ -165,7 +168,7 @@ get_boolean(const char *string, bool *value)
  * import our data into raw c data structures. Error processing
  * is keep to a mimimum since this is just an example.
  */
-int consume_event(struct parser_state *s, yaml_event_t *event)
+static int consume_event(struct parser_state *s, yaml_event_t *event)
 {
     char *value;
 

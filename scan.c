@@ -10,10 +10,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define INDENT "  "
-#define STRVAL(x) ((x) ? (char*)(x) : "")
+#include "monolithic_examples.h"
 
-void indent(int level)
+
+#define INDENT "  "
+#define STRVAL(x) ((x) ? (const char*)(x) : "")
+
+static void indent(int level)
 {
     int i;
     for (i = 0; i < level; i++) {
@@ -21,7 +24,7 @@ void indent(int level)
     }
 }
 
-void print_event(yaml_event_t *event)
+static void print_event(yaml_event_t *event)
 {
     static int level = 0;
 
